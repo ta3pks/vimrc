@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/nikos/projects/mimarsiv/routes'
+let g:netrw_dirhist_2='/Users/nikos/projects/mimarsiv'
+let g:netrw_dirhist_3='/Users/nikos/projects/mimarsiv/resources'
+let g:netrw_dirhist_4='/Users/nikos/projects/mimarsiv/resources/views'
+let g:netrw_dirhist_5='/Users/nikos/Documents/nvim'
+let g:netrw_dirhist_6='/Users/nikos/projects/ekolLive.go/lib/websocketops'
+let g:netrw_dirhist_7='/Users/nikos/projects/ekolLive.go/controllers/endpoints'
