@@ -1,6 +1,11 @@
 "vim plug init
 call plug#begin('~/plugged')
+Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
+Plug 'stephpy/vim-yaml'
+Plug 'marcweber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 Plug 'jwalton512/vim-blade'
 Plug 'scrooloose/nerdtree'
 Plug 'gregsexton/MatchTag'
@@ -23,7 +28,7 @@ call plug#end()
 "settings
 syntax on
 set t_Co=256 
-colorscheme slate
+colorscheme elflord
 if has("gui_running")
 	colorscheme evening
 endif
@@ -37,6 +42,7 @@ set listchars=tab:▸\ ,eol:¬
 set nohlsearch
 set wildmenu
 set wildmode=longest,list
+set wildignore=*node_modules/*
 set nowrap
 set splitbelow
 set splitright
@@ -54,26 +60,30 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let syntastic_javascript_checkers = ["eslint"]
 "maps
-map <Leader>1 ^
-map <Leader>2 $
-map <Leader>l :set list!<cr>
-map <Leader>p <C-p>
-map <Leader>b :CtrlPBuffer<cr>
-map <Leader><Leader> %
-map <Leader><cr> <ESC>:!tmux a -t vim<cr>
-
-inoremap jk <ESC>
+noremap <Leader>1 ^
+noremap <Leader>2 $
+noremap <Leader>l :set list!<cr>
+noremap <Leader>p <C-p>
+noremap <Leader>b :CtrlPBuffer<cr>
+noremap <Leader><Leader> %
+noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
+noremap <Leader>w <C-w>
+noremap <Leader>] <esc> :lopen <cr>
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
-nmap .. :GoRun<CR>
-map <Leader>w <C-w>
-map <C-l> :GoImports<CR>
-map <Leader>. <ESC> :vsp <cfile><CR>
-map <C-o> <ESC> :execute 'find' input("file:")<CR>
+noremap <C-l> :GoImports<CR>
+noremap <Leader>. <ESC> :vsp <cfile><CR>
+noremap <C-o> <ESC> :execute 'find' input("file:")<CR>
+if has('nvim')
+	noremap <Leader><cr> :vsp\|:term <cr> 
+endif
+autocmd BufNewFile,BufRead *.go nnoremap .. :GoRun<CR>
 "habbit breaking
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 "habbit breaking end
+"functions
