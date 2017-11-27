@@ -2,3 +2,17 @@ app
 config
 localhost
 uuid
+auth
+AuhtMethod
+AuthMethod
+GSSAPI
+NOAUTH
+strconv
+io
+NOACCEPTABLEMETHOD
+os
+fmt
+NewServer
+MiddleWare
+HandShake
+nullable

@@ -2,6 +2,8 @@
 call plug#begin('~/plugged')
 Plug 'keith/investigate.vim'
 Plug 'w0rp/ale'
+Plug 'altercation/vim-colors-solarized'
+Plug 'noahfrederick/vim-hemisu'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
 Plug 'stephpy/vim-yaml'
@@ -30,15 +32,15 @@ call plug#end()
 "settings
 syntax on
 set t_Co=256 
-if has('nvim')
-	colorscheme evening
-else
-	colorscheme elflord
-endif
+colorscheme solarized
 "sets
+set ignorecase
+set background=dark
 set linebreak
 set wrap
 set foldmethod=indent
+set foldlevel=0
+set nofoldenable
 set tabstop=4
 set noexpandtab
 set shiftwidth=4
@@ -47,8 +49,10 @@ set listchars=tab:▸\ ,eol:¬
 set nohlsearch
 set wildmenu
 set wildmode=longest,list
-set wildignore=*node_modules/*
+set wildignore=*node_modules/*,*/vendor/*
+set wildignorecase
 set nowrap
+set spell
 set splitbelow
 set splitright
 set path=.,/usr/include,,**
@@ -65,8 +69,8 @@ let g:ale_fixers = {
 			\}
 let g:ale_linters = {
 			\   'javascript': ['eslint'],
+			\   'go':['gometalinter','go build'],
 			\}
-let g:ale_set_balloons = 1
 let g:ale_set_highlights= 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fix_on_save = 1
@@ -74,17 +78,17 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let NERDTreeWinSize = 30
 "maps
+noremap <C-w>r <esc>:so $MYVIMRC<cr>
 noremap <Leader>1 ^
 noremap <Leader>2 $
 noremap <Leader>n :NERDTreeToggle<CR>
 noremap <Leader>l :set list!<cr>
 noremap <Leader>p <C-p>
-noremap <Leader>b :CtrlPBuffer<cr>
+noremap <C-b> :CtrlPBuffer<cr>
 noremap <Leader><Leader> %
 noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
-noremap <leader>q <esc>:wa <cr> :mksession! ~/Session.vim <cr> :qa <cr>
-noremap <Leader>o <esc>:so ~/Session.vim <cr>
-noremap <Leader>w <C-w>
+noremap <Leader>q <esc>:wa <cr> :mksession! ./Session.vim <cr> :qa <cr>
+noremap <Leader>o <esc>:so ./Session.vim <cr>
 noremap <Leader>] <esc> :lnext <cr>
 noremap <Leader>[ <esc> :lprev <cr>
 nnoremap <Tab> :bn<CR>
@@ -95,13 +99,14 @@ noremap <C-o> <ESC> :execute 'find' input("file:")<CR>
 if has('nvim')
 	noremap <Leader><cr> :vsp\|:term <cr> 
 endif
+au VimLeavePre * :mksession! ./Session.vim 
+au VimEnter * :silent! source ./Session.vim
 autocmd BufNewFile,BufRead *.go nnoremap .. :GoImports<CR>
-autocmd vimenter * NERDTree
 "habbit breaking
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
+nnoremap <Left> <NOP>
+nnoremap <Right> <NOP>
 "habbit breaking end
 "functions
 function! LinterStatus() abort
