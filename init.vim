@@ -1,3 +1,4 @@
+au!
 "vim plug init
 call plug#begin('~/plugged')
 Plug 'keith/investigate.vim'
@@ -78,7 +79,9 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let NERDTreeWinSize = 30
 "maps
+noremap <C-t><C-t> <esc>:e %<cr>
 noremap <C-w>r <esc>:so $MYVIMRC<cr>
+noremap <C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 noremap <Leader>1 ^
 noremap <Leader>2 $
 noremap <Leader>n :NERDTreeToggle<CR>
@@ -86,22 +89,16 @@ noremap <Leader>l :set list!<cr>
 noremap <Leader>p <C-p>
 noremap <C-b> :CtrlPBuffer<cr>
 noremap <Leader><Leader> %
-noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
-noremap <Leader>q <esc>:wa <cr> :mksession! ./Session.vim <cr> :qa <cr>
-noremap <Leader>o <esc>:so ./Session.vim <cr>
-noremap <Leader>] <esc> :lnext <cr>
-noremap <Leader>[ <esc> :lprev <cr>
-nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
-nnoremap <Leader>' <esc> :execute 'GoImport' input('name:')<cr>
-noremap <Leader>. <ESC> :vsp <cfile><CR>
-noremap <C-o> <ESC> :execute 'find' input("file:")<CR>
 if has('nvim')
 	noremap <Leader><cr> :vsp\|:term <cr> 
+else
+noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
 endif
 au VimLeavePre * :mksession! ./Session.vim 
-au VimEnter * :silent! source ./Session.vim
-autocmd BufNewFile,BufRead *.go nnoremap .. :GoImports<CR>
+au VimEnter * :call LoadSession()
+autocmd FileType go nnoremap .. :GoImports<CR>
+au FileType go noremap <Leader>g <esc> :vsp \| :GoDef <cr>
+au FileType go noremap <Leader>' <esc> :execute 'GoImport' input('name:')<cr>
 "habbit breaking
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
@@ -120,4 +117,9 @@ function! LinterStatus() abort
     \   all_non_errors,
     \   all_errors
     \)
+endfunction
+function! LoadSession()
+	if argc()==0
+		:silent! source ./Session.vim 
+	endif
 endfunction
