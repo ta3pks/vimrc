@@ -85,7 +85,7 @@ noremap <Leader>2 $
 noremap <Leader>g :Gstatus<CR>
 noremap <Leader>c :Gcommit<CR>
 noremap <Leader>l :set list!<cr>
-noremap <Leader>p <C-p>
+noremap <Leader>p :Gpush<cr>
 noremap <C-b> :CtrlPBuffer<cr>
 noremap <Leader><Leader> %
 if has('nvim')
