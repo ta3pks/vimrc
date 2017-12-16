@@ -3,6 +3,7 @@ au!
 call plug#begin('~/plugged')
 Plug 'keith/investigate.vim'
 Plug 'w0rp/ale'
+Plug 'ternjs/tern_for_vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'noahfrederick/vim-hemisu'
 Plug 'scrooloose/nerdcommenter'
@@ -10,13 +11,10 @@ Plug 'Raimondi/delimitMate'
 Plug 'stephpy/vim-yaml'
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
 Plug 'jwalton512/vim-blade'
 Plug 'scrooloose/nerdtree'
 Plug 'gregsexton/MatchTag'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-go'
 Plug 'pangloss/vim-javascript'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go'
@@ -36,6 +34,7 @@ set t_Co=256
 colorscheme solarized
 "sets
 set ignorecase
+set smartcase
 set background=dark
 set linebreak
 set wrap
@@ -52,7 +51,6 @@ set wildmenu
 set wildmode=longest,list
 set wildignore=*node_modules/*,*/vendor/*
 set wildignorecase
-set nowrap
 set spell
 set splitbelow
 set splitright
@@ -70,7 +68,7 @@ let g:ale_fixers = {
 			\}
 let g:ale_linters = {
 			\   'javascript': ['eslint'],
-			\   'go':['gometalinter','go build'],
+			\   'go':['go build'],
 			\}
 let g:ale_set_highlights= 1
 let g:airline#extensions#ale#enabled = 1
@@ -79,12 +77,13 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let NERDTreeWinSize = 30
 "maps
-noremap <C-t><C-t> <esc>:e %<cr>
+inoremap ;; <esc>/%%%<cr>c3l
 noremap <C-w>r <esc>:so $MYVIMRC<cr>
 noremap <C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 noremap <Leader>1 ^
 noremap <Leader>2 $
-noremap <Leader>n :NERDTreeToggle<CR>
+noremap <Leader>g :Gstatus<CR>
+noremap <Leader>c :Gcommit<CR>
 noremap <Leader>l :set list!<cr>
 noremap <Leader>p <C-p>
 noremap <C-b> :CtrlPBuffer<cr>
@@ -97,8 +96,12 @@ endif
 au VimLeavePre * :mksession! ./Session.vim 
 au VimEnter * :call LoadSession()
 autocmd FileType go nnoremap .. :GoImports<CR>
-au FileType go noremap <Leader>g <esc> :vsp \| :GoDef <cr>
+au FileType go inoremap <leader>gd <esc> :GoDoc<cr>
+au FileType go noremap <Leader>s <esc> :vsp \| :GoDef <cr>
+au FileType go noremap <Leader>d <esc>:GoDef <cr>
 au FileType go noremap <Leader>' <esc> :execute 'GoImport' input('name:')<cr>
+au FileType javascript noremap <Leader>s <esc> :vsp \| :TernDef<cr>
+au FileType javascript noremap <Leader>d <esc>:TernDef <cr>
 "habbit breaking
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
