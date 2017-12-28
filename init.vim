@@ -1,12 +1,11 @@
 au!
 "vim plug init
 call plug#begin('~/plugged')
-Plug 'keith/investigate.vim'
+Plug 'jodosha/vim-godebug'
 Plug 'w0rp/ale'
 Plug 'ternjs/tern_for_vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'noahfrederick/vim-hemisu'
-Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
 Plug 'stephpy/vim-yaml'
 Plug 'marcweber/vim-addon-mw-utils'
@@ -21,10 +20,10 @@ Plug 'fatih/vim-go'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'zchee/deoplete-go'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'wakatime/vim-wakatime'
 Plug 'bling/vim-airline'
 call plug#end()
@@ -72,6 +71,8 @@ let g:ale_linters = {
 			\}
 let g:ale_set_highlights= 1
 let g:airline#extensions#ale#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='violet'
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
@@ -87,6 +88,7 @@ noremap <Leader>c :Gcommit<CR>
 noremap <Leader>l :set list!<cr>
 noremap <Leader>p :Gpush<cr>
 noremap <C-b> :CtrlPBuffer<cr>
+noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader><Leader> %
 if has('nvim')
 	noremap <Leader><cr> :vsp\|:term <cr> 
@@ -95,8 +97,10 @@ noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
 endif
 au VimLeavePre * :mksession! ./Session.vim 
 au VimEnter * :call LoadSession()
+au BufWritePost * :call OpenFolded()
 autocmd FileType go nnoremap .. :GoImports<CR>
-au FileType go inoremap <leader>gd <esc> :GoDoc<cr>
+au FileType go noremap <C-g>t <esc> :GoToggleBreakpoint<cr>
+au FileType go noremap <C-g><C-g> <esc> :GoDebug<cr>
 au FileType go noremap <Leader>s <esc> :vsp \| :GoDef <cr>
 au FileType go noremap <Leader>d <esc>:GoDef <cr>
 au FileType go noremap <Leader>' <esc> :execute 'GoImport' input('name:')<cr>
@@ -124,5 +128,10 @@ endfunction
 function! LoadSession()
 	if argc()==0
 		:silent! source ./Session.vim 
+	endif
+endfunction
+function! OpenFolded()
+	if foldclosed(getcurpos()[1]) != -1
+		:foldopen
 	endif
 endfunction
