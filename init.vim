@@ -28,6 +28,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'bling/vim-airline'
 call plug#end()
 "settings
+source ~/.vim/configs/go.vim
 syntax on
 set t_Co=256 
 colorscheme solarized
@@ -55,7 +56,7 @@ set splitbelow
 set splitright
 set path=.,/usr/include,,**
 set nu
-set smartindent
+set autoindent
 set backspace=2
 set splitright
 set mouse=a
@@ -93,17 +94,11 @@ noremap <Leader><Leader> %
 if has('nvim')
 	noremap <Leader><cr> :vsp\|:term <cr> 
 else
-noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
+	noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
 endif
 au VimLeavePre * :mksession! ./Session.vim 
 au VimEnter * :call LoadSession()
 au BufWritePost * :call OpenFolded()
-autocmd FileType go nnoremap .. :GoImports<CR>
-au FileType go noremap <C-g>t <esc> :GoToggleBreakpoint<cr>
-au FileType go noremap <C-g><C-g> <esc> :GoDebug<cr>
-au FileType go noremap <Leader>s <esc> :vsp \| :GoDef <cr>
-au FileType go noremap <Leader>d <esc>:GoDef <cr>
-au FileType go noremap <Leader>' <esc> :execute 'GoImport' input('name:')<cr>
 au FileType javascript noremap <Leader>s <esc> :vsp \| :TernDef<cr>
 au FileType javascript noremap <Leader>d <esc>:TernDef <cr>
 "habbit breaking
