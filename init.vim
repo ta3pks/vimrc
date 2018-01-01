@@ -79,7 +79,7 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let NERDTreeWinSize = 30
 "maps
-inoremap ;; <esc>/%%%<cr>c3l
+inoremap ;; <esc>/<%--%><cr>c3l
 noremap <C-w>r <esc>:so $MYVIMRC<cr>
 noremap <C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 noremap <Leader>1 ^
