@@ -97,7 +97,6 @@ else
 endif
 au VimLeavePre * :mksession! ./Session.vim 
 au VimEnter * :call LoadSession()
-au BufWritePost * :call OpenFolded()
 au FileType javascript noremap <Leader>s <esc> :vsp \| :TernDef<cr>
 au FileType javascript noremap <Leader>d <esc>:TernDef <cr>
 "habbit breaking
@@ -122,10 +121,5 @@ endfunction
 function! LoadSession()
 	if argc()==0
 		:silent! source ./Session.vim 
-	endif
-endfunction
-function! OpenFolded()
-	if foldclosed(getcurpos()[1]) != -1
-		:foldopen
 	endif
 endfunction
