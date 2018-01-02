@@ -4,13 +4,10 @@ call plug#begin('~/plugged')
 Plug 'jodosha/vim-godebug'
 Plug 'w0rp/ale'
 Plug 'ternjs/tern_for_vim'
-Plug 'altercation/vim-colors-solarized'
-Plug 'noahfrederick/vim-hemisu'
 Plug 'Raimondi/delimitMate'
 Plug 'stephpy/vim-yaml'
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'jwalton512/vim-blade'
 Plug 'scrooloose/nerdtree'
 Plug 'gregsexton/MatchTag'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -23,15 +20,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
-Plug 'zchee/deoplete-go'
 Plug 'wakatime/vim-wakatime'
 Plug 'bling/vim-airline'
 call plug#end()
 "settings
-source ~/.vim/configs/go.vim
 syntax on
 set t_Co=256 
-colorscheme solarized
+colorscheme elflord
 "sets
 set ignorecase
 set smartcase
@@ -51,11 +46,12 @@ set wildmenu
 set wildmode=longest,list
 set wildignore=*node_modules/*,*/vendor/*
 set wildignorecase
-set spell
+set nospell
 set splitbelow
 set splitright
 set path=.,/usr/include,,**
 set nu
+set rnu
 set autoindent
 set backspace=2
 set splitright
@@ -63,6 +59,7 @@ set mouse=a
 set statusline+=%#warningmsg#
 set statusline+=%*
 set statusline=%{LinterStatus()}
+let g:ctrlp_extensions = ['autoignore']
 let g:ale_fixers = {
 			\   'javascript': ['eslint'],
 			\}
@@ -79,7 +76,9 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let NERDTreeWinSize = 30
 "maps
-inoremap ;; <esc>/<%--%><cr>c3l
+inoremap ;; <esc>/{%[^%]*%}<cr>v/%}<cr><right>c
+"placeholder
+abbr plhd {%%}<left><left> 
 noremap <C-w>r <esc>:so $MYVIMRC<cr>
 noremap <C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 noremap <Leader>1 ^

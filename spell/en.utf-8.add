@@ -17,8 +17,6 @@ MiddleWare
 HandShake
 nullable
 vim
-vim
-vim
 tombala
 ZSH
 nikos
@@ -30,7 +28,6 @@ nikosefthias
 mongo
 mongoVolume
 db
-#ersion
 redis
 ale_fixers
 cacik
@@ -42,3 +39,9 @@ ver
 nmethods
 authmethods
 StateHandShake
+bson
+json
+admin
+bonuscredit
+ubuntu
+gcc
