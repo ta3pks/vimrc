@@ -11,6 +11,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'scrooloose/nerdtree'
 Plug 'gregsexton/MatchTag'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ludovicchabant/vim-ctrlp-autoignore'
 Plug 'pangloss/vim-javascript'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go'
@@ -76,9 +77,9 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let NERDTreeWinSize = 30
 "maps
-inoremap ;; <esc>/{%[^%]*%}<cr>v/%}<cr><right>c
+inoremap ;; <esc>/:%[^%]*%:<cr>v/%:<cr><right>c
 "placeholder
-abbr plhd {%%}<left><left> 
+noreabbr plhd :%%:<left><left> 
 noremap <C-w>r <esc>:so $MYVIMRC<cr>
 noremap <C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 noremap <Leader>1 ^

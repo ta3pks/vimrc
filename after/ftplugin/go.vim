@@ -9,5 +9,6 @@
 
 
 	"SNIPPETS
-	noreabbr meth func({% struct %} {% <Type> %}) {% <funcName> %} ({% <params> %}){% <returnValues> %}{{% <funcBody> %}}
-	noreabbr fnc func {% <funcName> %} ({% <params> %}){% <returnType> %}{{% <funcBody> %}}
+	noreabbr meth func(:% struct %: :% <Type> %:) :% <funcName> %: (:% <params> %:):% <returnValues> %:{:% <funcBody> %:}
+	noreabbr fnc func :% <funcName> %: (:% <params> %:):% <returnType> %:{:% <funcBody> %:}
+	noreabbr tp type :%<name>%: :%<data>%:
