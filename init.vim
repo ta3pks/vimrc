@@ -60,6 +60,10 @@ set mouse=a
 set statusline+=%#warningmsg#
 set statusline+=%*
 set statusline=%{LinterStatus()}
+"registers
+
+
+"""""""""""
 let g:ctrlp_extensions = ['autoignore']
 let g:ale_fixers = {
 			\   'javascript': ['eslint'],
@@ -79,7 +83,7 @@ let NERDTreeWinSize = 30
 "maps
 inoremap ;; <esc>/:%[^%]*%:<cr>v/%:<cr><right>c
 "placeholder
-noreabbr plhd :%%:<left><left> 
+noreabbr plhd :%%:<left><left>
 noremap <C-w>r <esc>:so $MYVIMRC<cr>
 noremap <C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 noremap <Leader>1 ^

@@ -12,3 +12,5 @@
 	noreabbr meth func(:% struct %: :% <Type> %:) :% <funcName> %: (:% <params> %:):% <returnValues> %:{:% <funcBody> %:}
 	noreabbr fnc func :% <funcName> %: (:% <params> %:):% <returnType> %:{:% <funcBody> %:}
 	noreabbr tp type :%<name>%: :%<data>%:
+	noreabbr hndl func :% <name> %:(w http.ResponseWriter,r *http.Request){:% <body> %:}
+	noreabbr mdlw func :% <name> %:(next http.Handler)http.Handler{<cr>:% <body> %:<cr>}
