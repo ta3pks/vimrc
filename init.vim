@@ -2,6 +2,7 @@ au!
 "vim plug init
 call plug#begin('~/plugged')
 Plug 'jodosha/vim-godebug'
+Plug 'tomtom/tcomment_vim'
 Plug 'w0rp/ale'
 Plug 'ternjs/tern_for_vim'
 Plug 'Raimondi/delimitMate'

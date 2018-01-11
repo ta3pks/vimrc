@@ -14,3 +14,4 @@
 	noreabbr tp type :%<name>%: :%<data>%:
 	noreabbr hndl func :% <name> %:(w http.ResponseWriter,r *http.Request){:% <body> %:}
 	noreabbr mdlw func :% <name> %:(next http.Handler)http.Handler{<cr>:% <body> %:<cr>}
+	noreabbr _tst func Test:%<Name>%:(t *testing.T){<cr>:%<Body>%:<cr>} 
