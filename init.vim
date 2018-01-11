@@ -67,6 +67,7 @@ set statusline=%{LinterStatus()}
 let g:ctrlp_extensions = ['autoignore']
 let g:ale_fixers = {
 			\   'javascript': ['eslint'],
+			\   'go'        : ['gofmt'],
 			\}
 let g:ale_linters = {
 			\   'javascript': ['eslint'],
