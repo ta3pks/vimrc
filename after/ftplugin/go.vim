@@ -4,8 +4,8 @@
 	noremap <Leader>s <esc> :vsp \| :GoDef <cr>
 	noremap <Leader>d <esc>:GoDef <cr>
 	noremap <Leader>' <esc> :execute 'GoImport' input('name:')<cr>
-	
-
+	nnoremap <Leader>gk :GoKeyify<cr>
+	nnoremap <Leader>ga :GoAddTags<cr>
 
 
 	"SNIPPETS
@@ -13,5 +13,6 @@
 	noreabbr fnc func :% <funcName> %: (:% <params> %:):% <returnType> %:{:% <funcBody> %:}
 	noreabbr tp type :%<name>%: :%<data>%:
 	noreabbr hndl func :% <name> %:(w http.ResponseWriter,r *http.Request){:% <body> %:}
+	noreabbr hndlf http.HandlerFunc(func :% <name> %:(w http.ResponseWriter,r *http.Request){:% <body> %:})
 	noreabbr mdlw func :% <name> %:(next http.Handler)http.Handler{<cr>:% <body> %:<cr>}
 	noreabbr _tst func Test:%<Name>%:(t *testing.T){<cr>:%<Body>%:<cr>} 
