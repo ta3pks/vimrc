@@ -3,7 +3,6 @@ au!
 call plug#begin('~/plugged')
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'lervag/vimtex'
 Plug 'jodosha/vim-godebug'
 Plug 'tomtom/tcomment_vim'
@@ -98,7 +97,6 @@ noremap <C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 noremap <Leader>1 ^
 noremap <Leader>2 $
 noremap <Leader>gg :Gstatus<CR>
-noremap <Leader>c :Gcommit<CR>
 noremap <Leader>l :set list!<cr>
 noremap <Leader>p :Gpush<cr>
 noremap <C-b> :CtrlPBuffer<cr>
