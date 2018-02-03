@@ -1,6 +1,10 @@
 au!
 "vim plug init
 call plug#begin('~/plugged')
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'lervag/vimtex'
 Plug 'jodosha/vim-godebug'
 Plug 'tomtom/tcomment_vim'
 Plug 'w0rp/ale'
@@ -24,6 +28,7 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'wakatime/vim-wakatime'
 Plug 'bling/vim-airline'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 "settings
 syntax on
@@ -45,7 +50,7 @@ set list
 set listchars=tab:▸\ ,eol:¬  
 set nohlsearch
 set wildmenu
-set wildmode=longest,list
+set wildmode=full
 set wildignore=*node_modules/*,*/vendor/*
 set wildignorecase
 set nospell
@@ -67,12 +72,14 @@ set statusline=%{LinterStatus()}
 """""""""""
 let g:ctrlp_extensions = ['autoignore']
 let g:ale_fixers = {
-			\   'javascript': ['eslint'],
-			\   'go'        : ['gofmt'],
+			\ 'javascript' : ['eslint'],
+			\ 'go'         : ['gofmt'],
+			\ 'typescript' : ['tslint','prettier'],
 			\}
 let g:ale_linters = {
-			\   'javascript': ['eslint'],
-			\   'go':['go build'],
+			\ 'javascript' : ['eslint'],
+			\ 'go'         : ['go build'],
+			\ 'html'       : ['tidy'],
 			\}
 let g:ale_set_highlights= 1
 let g:airline#extensions#ale#enabled = 1
@@ -90,12 +97,13 @@ noremap <C-w>r <esc>:so $MYVIMRC<cr>
 noremap <C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 noremap <Leader>1 ^
 noremap <Leader>2 $
-noremap <Leader>g :Gstatus<CR>
+noremap <Leader>gg :Gstatus<CR>
 noremap <Leader>c :Gcommit<CR>
 noremap <Leader>l :set list!<cr>
 noremap <Leader>p :Gpush<cr>
 noremap <C-b> :CtrlPBuffer<cr>
-noremap <Leader>n :NERDTreeToggle<cr>
+noremap <Leader>nt :NERDTreeToggle<cr>
+noremap <Leader>nf :NERDTreeFocus<cr>
 noremap <Leader><Leader> %
 if has('nvim')
 	noremap <Leader><cr> :vsp\|:term <cr> 
@@ -106,6 +114,15 @@ au VimLeavePre * :mksession! ./Session.vim
 au VimEnter * :call LoadSession()
 au FileType javascript noremap <Leader>s <esc> :vsp \| :TernDef<cr>
 au FileType javascript noremap <Leader>d <esc>:TernDef <cr>
+nnoremap Q :q<cr>
+nnoremap <C-Up> ddkP
+nnoremap <C-Down> ddp
+nnoremap <Leader>o :only<cr>
+nnoremap <Leader>tt :grep TODO: -r .<cr>
+nnoremap <Leader>tn :cn<cr>
+nnoremap <Leader>tp :cp<cr>
+nnoremap <silent> <C-k> <Plug>(ale_previous_wrap)
+nnoremap <silent> <C-j> <Plug>(ale_next_wrap)
 "habbit breaking
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
@@ -130,3 +147,4 @@ function! LoadSession()
 		:silent! source ./Session.vim 
 	endif
 endfunction
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
