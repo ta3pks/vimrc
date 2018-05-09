@@ -2,7 +2,11 @@ au!
 "vim plug init
 call plug#begin('~/plugged')
 Plug 'godlygeek/tabular'
+Plug 'sk1418/HowMuch'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'vim-scripts/netrw.vim'
 Plug 'mtth/scratch.vim'
+Plug 'freitass/todo.txt-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
 Plug 'jodosha/vim-godebug' "for neovim
@@ -42,6 +46,7 @@ set linebreak
 set wrap
 set foldlevel=0
 set nofoldenable
+set foldmethod=indent
 set tabstop=4
 set noexpandtab
 set shiftwidth=4
@@ -96,10 +101,11 @@ if has('nvim')
 else
 	noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
 endif
-au VimLeavePre * :mksession! ./Session.vim 
-au VimEnter * :call LoadSession()
-au FileType javascript noremap <Leader>s <esc> :vsp \| :TernDef<cr>
-au FileType javascript noremap <Leader>d <esc>:TernDef <cr>
+autocmd bufenter * :checktime
+autocmd VimLeavePre * :mksession! ./Session.vim 
+autocmd VimEnter * :call LoadSession()
+autocmd FileType javascript noremap <Leader>s <esc> :vsp \| :TernDef<cr>
+autocmd FileType javascript noremap <Leader>d <esc>:TernDef <cr>
 "maps
 inoremap ;; <esc>/:%[^%]*%:<cr>v/%:<cr><right>c
 inoremap <C-space> <C-x><C-o>
@@ -110,17 +116,20 @@ nnoremap <silent><Leader>2 $
 nnoremap <silent><Leader>j :jumps<cr>
 nnoremap <silent><Leader>gg :Gstatus<CR>
 nnoremap <silent><Leader>l :set list!<cr>
-nnoremap <silent><Leader>p :Gpush<cr>
+nnoremap <Leader>p :Gpush<cr>
 nnoremap <silent><C-b> :CtrlPBuffer<cr>
 nnoremap <silent><Leader>nt :NERDTreeToggle<cr>
 nnoremap <silent><Leader>nf :NERDTreeFocus<cr>
 nnoremap <silent><Leader><Leader> %
 nnoremap <silent> Q :q<cr>
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-l> <C-w>l
+nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent><C-Up> ddkP
 nnoremap <silent><C-Down> ddp
 vnoremap <silent><C-Down> xp`[V`]
 vnoremap <silent><C-Up> xkP`[V`]
-nnoremap <silent><Leader>o :only<cr>
 nnoremap <silent><Leader>tt :grep TODO: -r .<cr>
 nnoremap <silent> \td :s/\c\(todo\):/\1[x]:/<cr>
 nnoremap <silent> \tc /\v^\s*\/\/todo[x.*$<cr>dd
@@ -128,13 +137,14 @@ nnoremap <silent> \tn /TODO:<cr>
 nnoremap <silent> \tp ?TODO:<cr>
 nnoremap <silent><Leader>tn :cn<cr>
 nnoremap <silent><Leader>tp :cp<cr>
-nnoremap <silent><C-k> :lprevious<cr>
-nnoremap <silent><C-j> :lnext<cr>
-nnoremap <silent><C-f> :lfirst<cr>
-nnoremap <silent><C-K> :cprevious<cr>
-nnoremap <silent><C-J> :cnext<cr>
-nnoremap <silent><C-F> :cfirst<cr>
-nnoremap <silent>cp :let @" = expand("%")<cr>
+nnoremap <buffer><C-k> :lprevious<cr>
+nnoremap <buffer><C-j> :lnext<cr>
+nnoremap <buffer><C-f> :lfirst<cr>
+nnoremap <buffer><C-K> :cprevious<cr>
+nnoremap <buffer><C-J> :cnext<cr>
+nnoremap <buffer><C-F> :cfirst<cr>
+nnoremap cp :let @" = expand("%")<cr>
+nnoremap # :b #<cr>
 "habbit breaking
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
@@ -163,5 +173,4 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "registers
 let @g="\<C-w>5>"
 let @l="\<C-w>5<"
-
 
