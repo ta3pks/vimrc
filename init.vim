@@ -5,6 +5,7 @@ Plug 'godlygeek/tabular'
 Plug 'sk1418/HowMuch'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'vim-scripts/netrw.vim'
+Plug 'tpope/vim-dadbod'
 Plug 'mtth/scratch.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
@@ -120,27 +121,20 @@ nnoremap <silent><Leader>nt :NERDTreeToggle<cr>
 nnoremap <silent><Leader>nf :NERDTreeFocus<cr>
 nnoremap <silent><Leader><Leader> %
 nnoremap <silent> Q :q<cr>
-nnoremap <silent> <C-j> <C-w>j
-nnoremap <silent> <C-k> <C-w>k
-nnoremap <silent> <C-l> <C-w>l
-nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent><C-Up> ddkP
 nnoremap <silent><C-Down> ddp
 vnoremap <silent><C-Down> xp`[V`]
 vnoremap <silent><C-Up> xkP`[V`]
-nnoremap <silent><Leader>tt :grep TODO: -r .<cr>
+nnoremap <silent><Leader>tt :grep TODO: -r . --exclude-dir "node_modules"<cr>
 nnoremap <silent> \td :s/\c\(todo\):/\1[x]:/<cr>
 nnoremap <silent> \tc /\v^\s*\/\/todo[x.*$<cr>dd
-nnoremap <silent> \tn /TODO:<cr>
-nnoremap <silent> \tp ?TODO:<cr>
-nnoremap <silent><Leader>tn :cn<cr>
-nnoremap <silent><Leader>tp :cp<cr>
-nnoremap <buffer><C-k> :lprevious<cr>
-nnoremap <buffer><C-j> :lnext<cr>
-nnoremap <buffer><C-f> :lfirst<cr>
-nnoremap <buffer><C-K> :cprevious<cr>
-nnoremap <buffer><C-J> :cnext<cr>
-nnoremap <buffer><C-F> :cfirst<cr>
+nnoremap <silent> \tn //TODO: 
+inoremap <silent> \tn //TODO: 
+nnoremap <C-k> :lprevious<cr>
+nnoremap <C-j> :lnext<cr>
+nnoremap <C-f> :lfirst<cr>
+nnoremap <C-h> :cprevious<cr>
+nnoremap <C-l> :cnext<cr>
 nnoremap cp :let @" = expand("%")<cr>
 nnoremap # :b #<cr>
 "habbit breaking

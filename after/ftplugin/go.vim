@@ -29,3 +29,4 @@
 	inoreabbr <buffer> mdlw func :% <name> %:(next http.Handler)http.Handler{<cr>:% <body> %:<cr>}
 	inoreabbr <buffer> _tst func Test:%<Name>%:(t *testing.T){<cr>:%<Body>%:<cr>} 
 	inoreabbr <buffer> finit func init(){<cr>:%<Body>%:<cr>} 
+	inoreabbr <buffer> mapi map[string]interface{}{:% <Body> %:}
