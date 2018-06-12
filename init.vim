@@ -125,7 +125,8 @@ nnoremap <silent><C-Up> ddkP
 nnoremap <silent><C-Down> ddp
 vnoremap <silent><C-Down> xp`[V`]
 vnoremap <silent><C-Up> xkP`[V`]
-nnoremap <silent><Leader>tt :grep TODO: -r . --exclude-dir "node_modules"<cr>
+nnoremap <silent><Leader>tt :grep TODO: -r . --exclude-dir "vendor" --exclude-dir "node_modules"<cr>
+nnoremap <silent><Leader>s :execute 'grep '.input('search: ').' -r . --exclude-dir "vendor" --exclude-dir "node_modules"'<cr>
 nnoremap <silent> \td :s/\c\(todo\):/\1[x]:/<cr>
 nnoremap <silent> \tc /\v^\s*\/\/todo[x.*$<cr>dd
 nnoremap <silent> \tn //TODO: 
