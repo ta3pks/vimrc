@@ -2,6 +2,7 @@ au!
 "vim plug init
 call plug#begin('~/plugged')
 Plug 'godlygeek/tabular'
+Plug 'chr4/nginx.vim'
 Plug 'sk1418/HowMuch'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'vim-scripts/netrw.vim'
@@ -167,3 +168,4 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 let @g="\<C-w>5>"
 let @l="\<C-w>5<"
 
+au filetype javascript nnoremap \ge :!node %<cr>
