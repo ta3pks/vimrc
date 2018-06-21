@@ -96,7 +96,12 @@ let NERDTreeWinSize = 30
 "placeholder
 inoreabbr plhd :%%:<left><left>
 if has('nvim')
-	noremap <silent> <Leader><cr> :vsp\|:term <cr> 
+	func! OpenTerm()
+		vsp
+		term
+		normal i
+	endfunction
+	noremap <silent> <Leader><cr> :call OpenTerm() <cr> 
 else
 	noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
 endif
