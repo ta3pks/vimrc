@@ -13,7 +13,7 @@
 	nnoremap <buffer> <Leader>ga :execute 'GoAddTags' input('type: ')<cr>
 	nnoremap <buffer> <Leader>gr :GoRename<cr>
 	nnoremap <buffer> <Leader>gc :GoCallers<cr>
-	nnoremap <buffer> <Leader>ge :GoRun <cr>
+	nnoremap <buffer> <Leader>ge :call RUNGO() <cr>
 	nnoremap <buffer> <leader>g] :GoImports<CR>
 	nnoremap <buffer> !! :GoAlternate<CR>
 	nnoremap <buffer> <C-d> :GoDecls<cr>
@@ -30,3 +30,8 @@
 	inoreabbr <buffer> _tst func Test:%<Name>%:(t *testing.T){<cr>:%<Body>%:<cr>} 
 	inoreabbr <buffer> finit func init(){<cr>:%<Body>%:<cr>} 
 	inoreabbr <buffer> mapi map[string]interface{}{:% <Body> %:}
+	
+	function!  RUNGO() 
+			GoRun
+			execute "normal \<c-w>\<c-w>i"
+		endfunction	
