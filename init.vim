@@ -40,6 +40,7 @@ set t_Co=256
 colorscheme elflord
 "sets
 set ignorecase
+set numberwidth=1
 set smartcase
 set background=dark
 set linebreak
@@ -94,12 +95,10 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let NERDTreeWinSize = 30
-"placeholder
-inoreabbr plhd :%%:<left><left>
 if has('nvim')
 	func! OpenTerm()
 		vsp
-		term
+		term bash
 		normal i
 	endfunction
 	noremap <silent> <Leader><cr> :call OpenTerm() <cr> 
@@ -112,12 +111,9 @@ autocmd VimEnter * :call LoadSession()
 autocmd FileType javascript noremap <Leader>s <esc> :vsp \| :TernDef<cr>
 autocmd FileType javascript noremap <Leader>d <esc>:TernDef <cr>
 "maps
-inoremap ;; <esc>/:%[^%]*%:<cr>v/%:<cr><right>c
 inoremap <C-space> <C-x><C-o>
 nnoremap <silent><C-w>r <esc>:so $MYVIMRC<cr>
 nnoremap <silent><C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
-nnoremap <silent><Leader>1 ^
-nnoremap <silent><Leader>2 $
 nnoremap <silent><Leader>j :jumps<cr>
 nnoremap <silent><Leader>gg :Gstatus<CR>
 nnoremap <silent><Leader>l :set list!<cr>
