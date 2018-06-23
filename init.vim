@@ -2,6 +2,7 @@ au!
 "vim plug init
 call plug#begin('~/plugged')
 Plug 'godlygeek/tabular'
+Plug 'mbbill/undotree'
 Plug 'chr4/nginx.vim'
 Plug 'sk1418/HowMuch'
 Plug 'tmux-plugins/vim-tmux'
@@ -168,5 +169,5 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "registers
 let @g="\<C-w>5>"
 let @l="\<C-w>5<"
-
+nnoremap U :UndotreeToggle\|:UndotreeFocus<cr>
 au filetype javascript nnoremap \ge :!node %<cr>
