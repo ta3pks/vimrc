@@ -14,7 +14,7 @@
 	nnoremap <buffer> <Leader>gr :GoRename<cr>
 	nnoremap <buffer> <Leader>gc :GoCallers<cr>
 	nnoremap <buffer> <Leader>ge :call <SID>RUNGO() <cr>
-	nnoremap <buffer> <leader>g] :GoImports<CR>
+	nnoremap <buffer> <leader>g] :e /tmp/main.go<CR>
 	nnoremap <buffer> !! :GoAlternate<CR>
 	nnoremap <buffer> <C-d> :GoDecls<cr>
 	
