@@ -8,7 +8,6 @@ Plug 'sk1418/HowMuch'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'vim-scripts/netrw.vim'
 Plug 'tpope/vim-dadbod'
-Plug 'mtth/scratch.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
 Plug 'jodosha/vim-godebug' "for neovim
