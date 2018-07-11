@@ -2,6 +2,7 @@ au!
 "vim plug init
 call plug#begin('~/plugged')
 Plug 'godlygeek/tabular'
+Plug 'vim-scripts/dbext.vim'
 Plug 'mbbill/undotree'
 Plug 'chr4/nginx.vim'
 Plug 'sk1418/HowMuch'
