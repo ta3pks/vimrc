@@ -97,12 +97,17 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let NERDTreeWinSize = 30
 if has('nvim')
-	func! OpenTerm()
-		vsp
+	func! OpenTerm(down)
+		if a:down==1
+			sp
+		else
+			vsp
+		endif
 		term bash
 		normal i
 	endfunction
-	noremap <silent> <Leader><cr> :call OpenTerm() <cr> 
+	noremap <silent> <Leader><cr> :call OpenTerm(0) <cr> 
+	noremap <silent> <Leader>] :call OpenTerm(1) <cr> 
 else
 	noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
 endif
@@ -172,3 +177,6 @@ let @g="\<C-w>5>"
 let @l="\<C-w>5<"
 nnoremap U :UndotreeToggle\|:UndotreeFocus<cr>
 au filetype javascript nnoremap \ge :!node %<cr>
+if has("gui_vimr")
+	source ~/.config/nvim/ginit.vim
+endif
