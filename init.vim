@@ -39,6 +39,7 @@ syntax on
 set t_Co=256 
 colorscheme elflord
 "sets
+set modeline
 set ignorecase
 set numberwidth=1
 set smartcase
@@ -161,7 +162,8 @@ function! LinterStatus() abort
 endfunction
 function! LoadSession()
 	if argc()==0
-		:silent! source ./Session.vim 
+		silent! source ./Session.vim 
+
 	endif
 endfunction
 autocmd BufWritePost $MYVIMRC source $MYVIMRC

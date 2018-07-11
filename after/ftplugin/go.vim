@@ -14,12 +14,13 @@
 	nnoremap <buffer> <Leader>gr :GoRename<cr>
 	nnoremap <buffer> <Leader>gc :GoCallers<cr>
 	nnoremap <buffer> <Leader>ge :call <SID>RUNGO() <cr>
-	nnoremap <buffer> <leader>g] :e /tmp/main.go<CR>
+	nnoremap <buffer> <leader>g] :tabnew /tmp/main.go<CR>
 	nnoremap <buffer> !! :GoAlternate<CR>
 	nnoremap <buffer> <C-d> :GoDecls<cr>
 	
 
 	"SNIPPETS
+	inoreabbr <buffer> noimp fmt.Errorf("not implemented yet")
 	inoreabbr <buffer> td: //TODO: 
 	inoreabbr <buffer> meth func(:% struct %: :% <Type> %:) :% <funcName> %: (:% <params> %:):% <returnValues> %:{:% <funcBody> %:}
 	inoreabbr <buffer> fnc func :% <funcName> %: (:% <params> %:):% <returnType> %:{:% <funcBody> %:}
