@@ -46,3 +46,9 @@ bonuscredit
 ubuntu
 gcc
 ftplugins
+endian
+LE2Int
+unmarshals
+Int2LE
+con/!
+con

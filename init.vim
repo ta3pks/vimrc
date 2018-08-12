@@ -2,6 +2,12 @@ au!
 "vim plug init
 call plug#begin('~/plugged')
 Plug 'godlygeek/tabular'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
+Plug 'mattn/webapi-vim'
+Plug 'racer-rust/vim-racer'
 Plug 'vim-scripts/dbext.vim'
 Plug 'mbbill/undotree'
 Plug 'chr4/nginx.vim'
@@ -35,11 +41,18 @@ Plug 'wakatime/vim-wakatime'
 Plug 'bling/vim-airline'
 Plug 'leafgarland/typescript-vim'
 call plug#end()
+let g:racer_cmd = "/Users/nikosefthias/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+
 "settings
 syntax on
 set t_Co=256 
-colorscheme elflord
+colorscheme delek
+set foldenable
+set foldmethod=marker
+
 "sets
+let g:limelight_conceal_ctermfg = 'gray'
 set modeline
 set ignorecase
 set numberwidth=1
@@ -65,11 +78,12 @@ set splitbelow
 set splitright
 set path=.,/usr/include,,**
 set nu
+set mouse=
 set rnu
 set autoindent
+set autochdir
 set backspace=2
 set splitright
-set mouse=a
 set statusline+=%#warningmsg#
 set statusline+=%*
 set statusline=%{LinterStatus()}
@@ -79,9 +93,10 @@ set statusline=%{LinterStatus()}
 """""""""""
 let g:ctrlp_extensions = ['autoignore']
 let g:ale_fixers = {
-			\ 'javascript' : ['eslint'],
 			\ 'go'         : ['goimports'],
+			\ 'javascript' : ['eslint'],
 			\ 'typescript' : ['tslint','prettier'],
+			\ 'rust'       : ['rustfmt'],
 			\}
 let g:ale_linters = {
 			\ 'javascript' : ['eslint'],
@@ -113,12 +128,12 @@ else
 	noremap <Leader><cr> <ESC>:!tmux a -t vim<cr>
 endif
 autocmd bufenter * :checktime
-autocmd VimLeavePre * :mksession! ./Session.vim 
-autocmd VimEnter * :call LoadSession()
+" autocmd VimLeavePre * :mksession! ./Session.vim 
+" autocmd VimEnter * :call LoadSession()
 autocmd FileType javascript noremap <Leader>s <esc> :vsp \| :TernDef<cr>
 autocmd FileType javascript noremap <Leader>d <esc>:TernDef <cr>
 "maps
-inoremap <C-space> <C-x><C-o>
+inoremap <C-Space> <C-x><C-o>
 nnoremap <silent><C-w>r <esc>:so $MYVIMRC<cr>
 nnoremap <silent><C-w><C-s> <esc>:tabnew $MYVIMRC<cr>
 nnoremap <silent><Leader>j :jumps<cr>
@@ -181,3 +196,4 @@ au filetype javascript nnoremap \ge :!node %<cr>
 if has("gui_vimr")
 	source ~/.config/nvim/ginit.vim
 endif
+let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:dbname=mysql:host=127.0.0.1:port=3306'
